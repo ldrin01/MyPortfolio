@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Eldrin Bernardino - Portfolio</title>
     <!-- Tailwind CSS CDN for easy styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts link for Plus Jakarta Sans -->
@@ -64,6 +64,112 @@
             max-height: 200px; /* Adjust this value if your mobile menu content is taller */
             opacity: 1; /* Fully visible */
         }
+
+        /* Accessibility Styles */
+        .high-contrast {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+        .high-contrast a {
+            color: #ffff00 !important; /* Yellow links for contrast */
+        }
+        .high-contrast .bg-white {
+            background-color: #333 !important;
+        }
+        .high-contrast .text-gray-600, .high-contrast .text-gray-700, .high-contrast .text-gray-800, .high-contrast .text-gray-500 {
+            color: #fff !important;
+        }
+        .high-contrast .shadow-sm, .high-contrast .shadow-md, .high-contrast .shadow-lg, .high-contrast .shadow-xl {
+            box-shadow: none !important; /* Remove shadows for cleaner contrast */
+            border: 1px solid #fff;
+        }
+        .high-contrast .bg-indigo-100, .high-contrast .bg-purple-100, .high-contrast .bg-yellow-100, .high-contrast .bg-blue-100, .high-contrast .bg-green-100, .high-contrast .bg-red-100 {
+            background-color: #333 !important;
+            color: #ffff00 !important;
+        }
+        /* Ensure all text elements inherit or are overridden for contrast */
+        .high-contrast h1, .high-contrast h2, .high-contrast h3, .high-contrast p, .high-contrast span, .high-contrast div, .high-contrast a, .high-contrast button {
+            color: #fff !important;
+        }
+        .high-contrast .text-yellow-300 {
+            color: #ffff00 !important;
+        }
+        .high-contrast .text-indigo-600, .high-contrast .text-indigo-700, .high-contrast .text-indigo-800, .high-contrast .text-purple-600 {
+            color: #ffff00 !important;
+        }
+        .high-contrast .bg-gradient-to-r {
+            background: #000 !important; /* Flat black background for hero */
+        }
+        .high-contrast img {
+            filter: grayscale(100%) invert(100%); /* Invert colors for images */
+        }
+
+        .large-font {
+            font-size: 1.2em; /* Increase base font size by 20% */
+        }
+        /* Adjust specific elements to scale relative to the new body font-size */
+        .large-font h1 { font-size: calc(4rem * 1.2); }
+        .large-font h2 { font-size: calc(2.25rem * 1.2); }
+        .large-font p { font-size: calc(1.125rem * 1.2); }
+        /* Media query adjustments for large font */
+        @media (min-width: 768px) { /* md breakpoint */
+            .large-font h1 { font-size: calc(6rem * 1.2); }
+            .large-font p { font-size: calc(1.5rem * 1.2); }
+        }
+
+        /* Custom toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #6366f1; /* Indigo */
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #6366f1;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(16px);
+            -ms-transform: translateX(16px);
+            transform: translateX(16px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -71,7 +177,7 @@
     <header id="main-header" class="header bg-white shadow-sm py-4 fixed top-0 left-0 w-full z-50 h-16 flex items-center">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <!-- Logo/Site Title -->
-            <a href="#" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition duration-300">Your Name</a>
+            <a href="#" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition duration-300">Eldrin Bernardino</a>
 
             <!-- Desktop Navigation Links (hidden on small screens, shown on medium and larger) -->
             <nav class="hidden md:flex space-x-6">
@@ -81,7 +187,7 @@
             </nav>
 
             <!-- Hamburger Icon Button (visible on small screens, hidden on medium and larger) -->
-            <button id="hamburger-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button id="hamburger-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
                 <!-- Hamburger SVG icon -->
                 <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -102,9 +208,9 @@
     <!-- Hero Section -->
     <header class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 md:py-32 rounded-b-3xl shadow-lg">
         <div class="container text-center">
-            <img src="https://placehold.co/150x150/6366f1/ffffff?text=EB" alt="Your Profile Picture" class="w-36 h-36 rounded-full mx-auto mb-6 border-4 border-white shadow-md object-cover">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Hi, I'm <span class="text-yellow-300">Your Name</span>!</h1>
-            <p class="text-xl md:text-2xl font-light mb-8">A passionate Web Developer | Designer | Creator</p>
+            <img src="https://placehold.co/150x150/6366f1/ffffff?text=EB" alt="Eldrin Bernardino's Profile Picture" class="w-36 h-36 rounded-full mx-auto mb-6 border-4 border-white shadow-md object-cover">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Hi, I'm <span class="text-yellow-300">Eldrin Bernardino</span>!</h1>
+            <p class="text-xl md:text-2xl font-light mb-8">Designing intuitive experiences that delight and convert.</p>
             <a href="#projects" class="inline-block bg-white text-indigo-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">View My Work</a>
         </div>
     </header>
@@ -115,13 +221,13 @@
             <h2 class="text-4xl font-bold text-gray-800 mb-10 text-center section-title">About Me</h2>
             <div class="max-w-3xl mx-auto text-lg leading-relaxed text-gray-700">
                 <p class="mb-4">
-                    Hello! I'm [Your Name], a [Your Profession/Enthusiast] with a passion for creating engaging and user-friendly digital experiences. I specialize in [Your Main Skill, e.g., front-end development, UI/UX design, full-stack development] and love bringing ideas to life through code.
+                    Hey there! I’m Eldrin, a multi-disciplinary designer passionate about crafting beautiful, user-friendly digital experiences. From intuitive UI/UX flows to scroll-stopping graphics and videos, I love bringing ideas to life with a balance of creativity and strategic thinking.
                 </p>
                 <p class="mb-4">
-                    My journey into the world of web development started with [mention a brief story or inspiration]. I enjoy solving complex problems and continuously learning new technologies to improve my craft.
+                    My skills include: <span class="font-semibold text-indigo-600">Figma, Adobe Suite, HTML, CSS, JavaScript, and AI Prompting.</span>
                 </p>
                 <p>
-                    Outside of coding, you can find me [mention a hobby or interest, e.g., hiking, playing guitar, reading sci-fi novels]. I'm always open to new challenges and collaborations!
+                    When I’m not designing, you’ll probably find me jamming on my guitar, exploring new coffee shops, or diving into the latest AI tools. I'm always open to new challenges and collaborations!
                 </p>
             </div>
         </div>
@@ -131,88 +237,47 @@
     <section id="projects" class="py-16 md:py-24 bg-gray-50">
         <div class="container">
             <h2 class="text-4xl font-bold text-gray-800 mb-10 text-center section-title">My Projects</h2>
-            <!-- Updated grid classes for responsiveness -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: Nova Banking App -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <img src="https://placehold.co/600x400/93c5fd/ffffff?text=Project+1" alt="Project 1 Thumbnail" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/93c5fd/ffffff?text=Nova+Banking" alt="Nova Banking App Thumbnail" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Project Title One</h3>
-                        <p class="text-gray-600 text-sm mb-4">A brief description of Project One, highlighting its key features and technologies used.</p>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Nova Banking App</h3>
+                        <p class="text-gray-600 text-sm mb-4">A modern, minimal banking interface focused on ease of navigation and customer trust.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UI/UX Design</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Figma</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Prototyping</span>
                         </div>
                         <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">View Project &rarr;</a>
                     </div>
                 </div>
 
-                <!-- Project Card 2 -->
+                <!-- Project Card 2: Café Finder Web App -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Project+2" alt="Project 2 Thumbnail" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Cafe+Finder" alt="Café Finder Web App Thumbnail" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Project Title Two</h3>
-                        <p class="text-gray-600 text-sm mb-4">A brief description of Project Two, highlighting its key features and technologies used.</p>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Café Finder Web App</h3>
+                        <p class="text-gray-600 text-sm mb-4">Helping coffee lovers discover local cafés with personalized recommendations and clean UX.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">React</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Tailwind CSS</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Web Design</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML/CSS/JS</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">UX Research</span>
                         </div>
                         <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">View Project &rarr;</a>
                     </div>
                 </div>
 
-                <!-- Project Card 3 -->
+                <!-- Project Card 3: Brand Motion Reel -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <img src="https://placehold.co/600x400/fcd34d/ffffff?text=Project+3" alt="Project 3 Thumbnail" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/fcd34d/ffffff?text=Motion+Reel" alt="Brand Motion Reel Thumbnail" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Project Title Three</h3>
-                        <p class="text-gray-600 text-sm mb-4">A brief description of Project Three, highlighting its key features and technologies used.</p>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Brand Motion Reel</h3>
+                        <p class="text-gray-600 text-sm mb-4">Animated brand visuals blending dynamic typography with subtle transitions.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Vue.js</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Node.js</span>
-                        </div>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                 <!-- Mock Project Card 4 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <img src="https://placehold.co/600x400/60a5fa/ffffff?text=Project+4" alt="Project 4 Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Project Title Four</h3>
-                        <p class="text-gray-600 text-sm mb-4">A brief description of Project Four, highlighting its key features and technologies used.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Flask</span>
-                        </div>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Mock Project Card 5 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <img src="https://placehold.co/600x400/c084fc/ffffff?text=Project+5" alt="Project 5 Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Project Title Five</h3>
-                        <p class="text-gray-600 text-sm mb-4">A brief description of Project Five, highlighting its key features and technologies used.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Angular</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">TypeScript</span>
-                        </div>
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Mock Project Card 6 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <img src="https://placehold.co/600x400/fb923c/ffffff?text=Project+6" alt="Project 6 Thumbnail" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Project Title Six</h3>
-                        <p class="text-gray-600 text-sm mb-4">A brief description of Project Six, highlighting its key features and technologies used.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Ruby</span>
-                            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Rails</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Video Editing</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Motion Graphics</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Adobe After Effects</span>
                         </div>
                         <a href="#" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">View Project &rarr;</a>
                     </div>
@@ -236,67 +301,293 @@
                     <svg class="w-8 h-8 inline-block" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
                 <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 text-2xl transition duration-300" aria-label="GitHub">
-                    <svg class="w-8 h-8 inline-block" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.493.998.108-.776.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.197-6.091 8.197-11.387 0-6.627-5.373-12-12-12z"/></svg>
+                    <svg class="w-8 h-8 inline-block" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.493.998.108-.776.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 8.197-11.387 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
             </div>
-            <p class="text-sm text-gray-500">&copy; 2025 Your Name. All rights reserved.</p>
+            <p class="text-sm text-gray-500">&copy; 2025 Eldrin Bernardino. All rights reserved.</p>
         </div>
     </section>
+
+    <!-- Accessibility Tool Button -->
+    <button id="accessibility-button" class="fixed bottom-4 right-4 z-50 p-3 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-110" aria-label="Open accessibility tools" aria-expanded="false" aria-controls="accessibility-menu">
+        <!-- Accessibility icon SVG (purple circle with white person figure) -->
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zM12 7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 8c-2.21 0-4-1.79-4-4h2c0 1.1.9 2 2 2s2-.9 2-2h2c0 2.21-1.79 4-4 4z"/>
+        </svg>
+    </button>
+
+    <!-- Accessibility Menu -->
+    <div id="accessibility-menu" class="fixed bottom-20 right-4 z-50 bg-white p-4 rounded-lg shadow-xl w-64 hidden flex-col space-y-4" role="menu" aria-hidden="true">
+        <div class="flex justify-between items-center">
+            <label for="high-contrast-toggle" class="text-gray-800 font-medium cursor-pointer">High Contrast</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="high-contrast-toggle" role="switch" aria-checked="false">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="flex justify-between items-center">
+            <label for="font-size-toggle" class="text-gray-800 font-medium cursor-pointer">Increase Font Size</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="font-size-toggle" role="switch" aria-checked="false">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <!-- New: Text-to-Speech Toggle -->
+        <div class="flex justify-between items-center">
+            <label for="text-to-speech-toggle" class="text-gray-800 font-medium cursor-pointer">Text-to-Speech on Hover/Tab</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="text-to-speech-toggle" role="switch" aria-checked="false">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <!-- New: Voice Selection Dropdown -->
+        <div class="flex flex-col space-y-2">
+            <label for="voice-select" class="text-gray-800 font-medium">Select Voice:</label>
+            <select id="voice-select" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Get references to the header, hamburger button, and mobile menu elements
-            const mainHeader = document.getElementById('main-header'); // Changed 'header' to 'mainHeader' to avoid conflict
+            const mainHeader = document.getElementById('main-header');
             const hamburgerButton = document.getElementById('hamburger-button');
             const mobileMenu = document.getElementById('mobile-menu');
+
+            // Get references to accessibility elements
+            const accessibilityButton = document.getElementById('accessibility-button');
+            const accessibilityMenu = document.getElementById('accessibility-menu');
+            const highContrastToggle = document.getElementById('high-contrast-toggle');
+            const fontSizeToggle = document.getElementById('font-size-toggle');
+            const textToSpeechToggle = document.getElementById('text-to-speech-toggle');
+            const voiceSelect = document.getElementById('voice-select'); // New: Voice select element
 
             // Variable to store the last known scroll position
             let lastScrollY = window.scrollY;
             // Get the height of the header to determine when to start hiding/showing
-            const headerHeight = mainHeader.offsetHeight; // Use mainHeader here
+            const headerHeight = mainHeader.offsetHeight;
+
+            // Variable to track text-to-speech state
+            let isTextToSpeechEnabled = false;
+            let currentUtterance = null; // To manage ongoing speech
+            let availableVoices = []; // To store voices fetched from SpeechSynthesis API
+
+            // Function to populate voice dropdown with a focus on quality and main languages
+            function populateVoiceList() {
+                availableVoices = speechSynthesis.getVoices();
+                voiceSelect.innerHTML = ''; // Clear existing options
+
+                // Define preferred languages and keywords for voice names
+                const preferredLanguages = ['en', 'es', 'fr', 'de', 'it', 'pt']; // English, Spanish, French, German, Italian, Portuguese
+                const googleVoiceKeywords = ['Google', 'Wavenet', 'Neural']; // Common indicators for high-quality Google voices
+
+                // Filter and sort voices
+                const filteredVoices = availableVoices
+                    .filter(voice => {
+                        // Include voices from preferred languages
+                        const isPreferredLang = preferredLanguages.some(lang => voice.lang.startsWith(lang));
+                        // Optionally, include voices that contain specific keywords for quality, regardless of language
+                        const isGoogleQualityVoice = googleVoiceKeywords.some(keyword => voice.name.includes(keyword));
+                        return isPreferredLang || isGoogleQualityVoice;
+                    })
+                    .sort((a, b) => {
+                        // Prioritize default voices
+                        if (a.default && !b.default) return -1;
+                        if (!a.default && b.default) return 1;
+
+                        // Prioritize English voices
+                        if (a.lang.startsWith('en') && !b.lang.startsWith('en')) return -1;
+                        if (!a.lang.startsWith('en') && b.lang.startsWith('en')) return 1;
+
+                        // Prioritize "Google" or "Neural" voices within the same language
+                        const aIsGoogle = googleVoiceKeywords.some(keyword => a.name.includes(keyword));
+                        const bIsGoogle = googleVoiceKeywords.some(keyword => b.name.includes(keyword));
+                        if (aIsGoogle && !bIsGoogle) return -1;
+                        if (!aIsGoogle && bIsGoogle) return 1;
+
+                        // Alphabetical sort as a fallback
+                        return a.name.localeCompare(b.name);
+                    });
+
+                // Add filtered and sorted voices to the dropdown
+                filteredVoices.forEach(voice => {
+                    const option = document.createElement('option');
+                    option.textContent = `${voice.name} (${voice.lang}) ${voice.default ? '— Default' : ''}`;
+                    option.value = voice.name;
+                    voiceSelect.appendChild(option);
+                });
+
+                // Set selected voice if previously saved, otherwise set to the first option (which should be a good default)
+                const savedVoiceName = localStorage.getItem('selectedVoice');
+                if (savedVoiceName && filteredVoices.some(voice => voice.name === savedVoiceName)) {
+                    voiceSelect.value = savedVoiceName;
+                } else if (filteredVoices.length > 0) {
+                    voiceSelect.value = filteredVoices[0].name;
+                    localStorage.setItem('selectedVoice', filteredVoices[0].name);
+                }
+            }
+
+            // Event listener for when voices are loaded/changed
+            // This is crucial because voices might not be immediately available on DOMContentLoaded
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = populateVoiceList;
+            } else {
+                // Fallback for browsers that don't fire voiceschanged immediately
+                populateVoiceList();
+            }
+
+
+            // Function to speak text
+            function speakText(text) {
+                // Stop any currently speaking text
+                if (currentUtterance && speechSynthesis.speaking) {
+                    speechSynthesis.cancel();
+                }
+                // Only speak if text-to-speech is enabled and there's text to speak
+                if (text && isTextToSpeechEnabled) {
+                    currentUtterance = new SpeechSynthesisUtterance(text);
+
+                    // Set the selected voice
+                    const selectedVoiceName = voiceSelect.value;
+                    const selectedVoice = availableVoices.find(voice => voice.name === selectedVoiceName);
+                    if (selectedVoice) {
+                        currentUtterance.voice = selectedVoice;
+                    } else {
+                        // Fallback to default voice if selected voice is not found
+                        currentUtterance.voice = availableVoices.find(voice => voice.default) || availableVoices[0];
+                    }
+
+                    speechSynthesis.speak(currentUtterance);
+                }
+            }
 
             // --- Scroll-triggered Header Visibility Logic ---
             window.addEventListener('scroll', () => {
-                // Check if the user is scrolling down and has scrolled past the header's height
                 if (window.scrollY > lastScrollY && window.scrollY > headerHeight) {
-                    // Add the 'hidden-header' class to slide the header up and out of view
                     mainHeader.classList.add('hidden-header');
-                    // If the mobile menu is open, close it when the header hides
                     mobileMenu.classList.remove('open');
                 } else if (window.scrollY < lastScrollY) {
-                    // Check if the user is scrolling up
-                    // Remove the 'hidden-header' class to slide the header back into view
                     mainHeader.classList.remove('hidden-header');
                 }
-                // Update the last scroll position for the next scroll event
                 lastScrollY = window.scrollY;
+
+                // Stop speech on scroll
+                if (currentUtterance && speechSynthesis.speaking) {
+                    speechSynthesis.cancel();
+                }
             });
 
             // --- Hamburger Menu Toggle Logic ---
             hamburgerButton.addEventListener('click', () => {
-                // Toggle the 'open' class on the mobile menu to show/hide it
                 mobileMenu.classList.toggle('open');
+                const isExpanded = mobileMenu.classList.contains('open');
+                hamburgerButton.setAttribute('aria-expanded', isExpanded);
             });
 
             // --- Close Mobile Menu on Link Click (for better UX) ---
-            // Select all anchor tags within the mobile menu
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    // When a link is clicked, remove the 'open' class to close the menu
                     mobileMenu.classList.remove('open');
+                    hamburgerButton.setAttribute('aria-expanded', false);
                 });
             });
 
-            // Basic JavaScript for smooth scrolling (optional but nice for UX)
+            // --- Accessibility Menu Toggle Logic ---
+            accessibilityButton.addEventListener('click', () => {
+                const isHidden = accessibilityMenu.classList.toggle('hidden');
+                accessibilityButton.setAttribute('aria-expanded', !isHidden);
+                accessibilityMenu.setAttribute('aria-hidden', isHidden);
+                if (!isHidden) {
+                    highContrastToggle.focus();
+                }
+            });
+
+            // --- High Contrast Toggle Logic ---
+            highContrastToggle.addEventListener('change', () => {
+                document.body.classList.toggle('high-contrast', highContrastToggle.checked);
+                localStorage.setItem('highContrastMode', highContrastToggle.checked);
+                highContrastToggle.setAttribute('aria-checked', highContrastToggle.checked);
+            });
+
+            // --- Font Size Toggle Logic ---
+            fontSizeToggle.addEventListener('change', () => {
+                document.body.classList.toggle('large-font', fontSizeToggle.checked);
+                localStorage.setItem('largeFontSize', fontSizeToggle.checked);
+                fontSizeToggle.setAttribute('aria-checked', fontSizeToggle.checked);
+            });
+
+            // --- Text-to-Speech Toggle Logic ---
+            textToSpeechToggle.addEventListener('change', () => {
+                isTextToSpeechEnabled = textToSpeechToggle.checked;
+                localStorage.setItem('textToSpeechEnabled', isTextToSpeechEnabled);
+                textToSpeechToggle.setAttribute('aria-checked', isTextToSpeechEnabled);
+                if (!isTextToSpeechEnabled && currentUtterance && speechSynthesis.speaking) {
+                    speechSynthesis.cancel();
+                }
+            });
+
+            // New: Voice Selection Change Listener
+            voiceSelect.addEventListener('change', () => {
+                localStorage.setItem('selectedVoice', voiceSelect.value);
+            });
+
+            // --- Event Delegation for Text-to-Speech on Hover/Focus ---
+            document.body.addEventListener('mouseover', (event) => {
+                if (isTextToSpeechEnabled) {
+                    const target = event.target;
+                    // Check if the element has meaningful text content and is not an interactive control
+                    // Also, ensure it's not the accessibility menu itself or its children to avoid self-speaking loops
+                    if (target.textContent && target.textContent.trim() !== '' &&
+                        !target.matches('button, input, select, textarea, label, svg, path, .toggle-switch, .slider') &&
+                        !accessibilityMenu.contains(target) && target !== accessibilityButton) {
+                        speakText(target.textContent);
+                    }
+                }
+            });
+
+            document.body.addEventListener('focusin', (event) => {
+                if (isTextToSpeechEnabled) {
+                    const target = event.target;
+                    if (target.textContent && target.textContent.trim() !== '' &&
+                        !accessibilityMenu.contains(target) && target !== accessibilityButton) {
+                        speakText(target.textContent);
+                    }
+                }
+            });
+
+            // --- Initialize Accessibility Settings from Local Storage ---
+            const savedHighContrast = localStorage.getItem('highContrastMode') === 'true';
+            if (savedHighContrast) {
+                document.body.classList.add('high-contrast');
+                highContrastToggle.checked = true;
+                highContrastToggle.setAttribute('aria-checked', true);
+            }
+
+            const savedLargeFontSize = localStorage.getItem('largeFontSize') === 'true';
+            if (savedLargeFontSize) {
+                document.body.classList.add('large-font');
+                fontSizeToggle.checked = true;
+                fontSizeToggle.setAttribute('aria-checked', true);
+            }
+
+            const savedTextToSpeech = localStorage.getItem('textToSpeechEnabled') === 'true';
+            if (savedTextToSpeech) {
+                textToSpeechToggle.checked = true;
+                isTextToSpeechEnabled = true;
+                textToSpeechToggle.setAttribute('aria-checked', true);
+            }
+
+            // --- Basic JavaScript for smooth scrolling (optional but nice for UX) ---
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
 
-                    // Adjust scroll position for fixed header
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - mainHeader.offsetHeight; // Subtract header height
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - mainHeader.offsetHeight;
                         window.scrollTo({
                             top: offsetTop,
                             behavior: 'smooth'
