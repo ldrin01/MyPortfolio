@@ -41,7 +41,7 @@
 </head>
 <body class="antialiased">
     <!-- Navigation Bar - Now fixed at the top -->
-    <nav class="bg-white shadow-sm py-4 fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white shadow-sm py-4 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out">
         <div class="container flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition duration-300">Your Name</a>
             <div class="space-x-6">
@@ -163,6 +163,23 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Scroll-triggered header behavior
+        const nav = document.querySelector('nav');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScrollTop > lastScrollTop && currentScrollTop > nav.offsetHeight) {
+                // Scrolling down, hide the header
+                nav.classList.add('-translate-y-full');
+            } else if (currentScrollTop < lastScrollTop) {
+                // Scrolling up, show the header
+                nav.classList.remove('-translate-y-full');
+            }
+            lastScrollTop = currentScrollTop;
         });
     </script>
 </body>
